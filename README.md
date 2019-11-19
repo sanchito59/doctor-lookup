@@ -1,3 +1,10 @@
+If you are using Mac OS, you must change:
+
+"'start': 'npm run build & webpack-dev-server --open --mode development',"
+to
+"'start': 'npm run build; webpack-dev-server --open --mode development',"
+
+
 # Project Title
 
 ## By **Developer**
