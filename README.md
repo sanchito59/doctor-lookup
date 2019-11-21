@@ -9,9 +9,7 @@ to
 
 ## By **Developer**
 
-### Description
-
-This application...
+This application is/will...
 - - - -
 ### Setup/Installation Requirements
 
@@ -19,7 +17,7 @@ This application...
 
 #### Zip:
 
-1. Click [here](exampleURLToUserRepository) to go to the repository location where you will find the clone/download menu.
+1. Click [here](https://github.com/exampleUsername/example-project-title.git) to go to the repository location where you will find the clone/download menu.
 
  2. Navigate to the directory (folder) that contains your browser's downloads.
  3. Double-click on **Project Title** directory (folder).
@@ -28,13 +26,13 @@ This application...
 
 #### Clone: 
 
- 1. To clone the repository, from your terminal or command line enter: "git clone  https://github.com/userName/exampleRepositoryURL.git"
+ 1. To clone the repository, from your terminal or command line enter: "git clone  https://github.com/exampleUsername/example-project-title.git"
  2. Once the repository finishes downloading you will need to install the packaged modules.
 
 #### Install:
 In order to use **Project Title** you will need to install the dependenices required to run it. Once you have cloned or zipped the file from Github, in your terminal or command line do the following: 
 
-from _C:\Users\exampleUser\Desktop\exampleDirectoryName>_  
+from _C:\Users\exampleUser\exampleCloneLocation\example-project-title>_  
 1. npm install
 2. npm run build
 
@@ -48,6 +46,7 @@ _"'start': 'npm run build & webpack-dev-server --open --mode development',"_
 _"'start': 'npm run build; webpack-dev-server --open --mode development',"_
 
 - - - -
+
 ### Specifications:
 
 |Symbol| Value  |
@@ -66,19 +65,21 @@ _"'start': 'npm run build; webpack-dev-server --open --mode development',"_
 |input1|output1|
 |input2|output2|
 |input3|output3|
-
 - - - -
 
 ### Technologies Used
 
+ - JavaScript/jQuery
+ - Webpack Plugins
+ - API
+ - Jest
  - HTML5
  - CSS3/Bootstrap/SCSS
- - JavaScript/jQuery
 
 - - - -
 ### Support and Contact
 
-If you run into any issues running **Project Title**, please contact **developer**.
+If you run into any issues running **Project Title**, please contact **Developer**.
 
 ### License
 
