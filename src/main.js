@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 $(document).ready(function () {
+  //Condition Search
   $('#conditionSearchButton').click(function () {
     let conditionSearchInput = $('#conditionSearch').val();
 
@@ -17,7 +18,9 @@ $(document).ready(function () {
     function getElements(response) {
       console.log(response);
     }
-  })
+  });
+
+  //Doctor Search
   $('#searchbar').submit(function (event) {
     event.preventDefault();
     let doctorSearchInput = $('#doctorSearch').val();
@@ -30,17 +33,19 @@ $(document).ready(function () {
 
     function getElements(response) {
       console.log('doctorSearchByName response', response);
-      $('#doctorInformation').html(`
-      <div id='doctorResult'>
-        <h4> ${response.firstName} ${response.lastName} M.D.</h4> 
-        <h5>${response.city}, ${response.state}</h5> 
-        <ul>
-          <li class='address'>${response.street}</li>
-          <li class='address'>${response.street2}</li>
-          <li class='address'>${response.zipCode}</li>
-        </ul>
-        <p>☎️: ${response.phoneNumber}
-      </div>`);
+      response.data.forEach(function(){
+        $('#doctorInformation').append(`
+        <div id='doctorResult'>
+          <h4> ${response.firstName} ${response.lastName} M.D.</h4> 
+          <h5>${response.city}, ${response.state}</h5> 
+          <ul>
+            <li class='address'>${response.street}</li>
+            <li class='address'>${response.street2}</li>
+            <li class='address'>${response.zipCode}</li>
+          </ul>
+          <p>☎️: ${response.phoneNumber}
+        </div>`);
+      });
     }
   });
 });
