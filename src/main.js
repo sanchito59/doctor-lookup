@@ -8,9 +8,16 @@ $(document).ready(function () {
   $('#doctorSearch').submit(function (event) {
     event.preventDefault();
     let searchInput = $('#searchInput').val();
-    let doctor = new DoctorSearch();
-    doctor.doctorSearchByName(searchInput);
-    console.log('Doctor: ', doctor);
-    console.log(doctor.conditionSearch(searchInput));
+
+    (async () => {
+      let doctor = new DoctorSearch();
+      const response = await doctor.doctorSearchByName(searchInput);
+      getElements(response);
+    })();
+
+    function getElements(response) {
+      console.log(response);
+    }
+
   });
 });

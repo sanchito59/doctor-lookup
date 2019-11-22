@@ -1,9 +1,4 @@
-// import { DisplayService } from './display-service.js';
-
 export class DoctorSearch {
-  constructor(newDoctor){
-    this.newDoctor = newDoctor;
-  }
   async doctorSearchByName(name) {
     let doctor = {};
     try {
@@ -24,13 +19,16 @@ export class DoctorSearch {
         // doctor.website = jsonResponse.data[0].practices[4].website; //Most dont seem to have websites?
         doctor.newPatients = jsonResponse.data[0].practices[0].accepts_new_patients;
         // console.log('Doctor Info: ', doctor);
+        return doctor;
       } else {
         throw new Error(response.status);
       }
     } catch (error) {
       console.error(`Better Doctor Fetch error: ${error}`);
     }
-    return doctor;
+  }
+  async display(doctorObject) {
+    console.log(`Be here: ${doctorObject}`)
   }
 
   // async conditionSearch() {
