@@ -5,10 +5,14 @@ export class DoctorSearch {
       const response = await fetch(`https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=or-portland&sort=full-name-asc&skip=0&limit=10&user_key=${process.env.API_KEY}`);
       if (response.ok) {
         const jsonResponse = await response.json();
+        console.log('raw json: ', jsonResponse);
+        let keys = Object.keys(jsonResponse.data);
+        console.log('keys: ', keys);
         // console.log(jsonResponse.data[0]);
-        for (let i = 0; i < 2; i++) {
-          console.log('loop log: ', jsonResponse.data[0]);
-        }
+        // for (let i = 0; i < 5; i++) {
+        //   console.log('i:', i)
+        //   console.log('loop log: ', keys.data[0].profile.[0]);
+        // }
         doctor.firstName = jsonResponse.data[0].profile.first_name;
         doctor.lastName = jsonResponse.data[0].profile.last_name;
         doctor.fullName = jsonResponse.data[0].practices[0].name;
