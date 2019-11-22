@@ -5,18 +5,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 $(document).ready(function () {
-  $('#doctorSearch').submit(function (event) {
+  $('#searchbar').submit(function (event) {
     event.preventDefault();
-    let searchInput = $('#searchInput').val();
+    let doctorSearchInput = $('#doctorSearch').val();
+    let conditionSearchInput = $('#conditionSearch').val();
 
     (async () => {
       let doctor = new DoctorSearch();
-      const response = await doctor.doctorSearchByName(searchInput);
+      const response = await doctor.doctorSearchByName(doctorSearchInput);
       getElements(response);
     })();
 
     function getElements(response) {
-      console.log('ruff', response);
+      console.log('response', response);
+      // console.log('response2', response2);
       $('#doctorInformation').html(`
       <div id='doctorResult'>
         <h4> ${response.firstName} ${response.lastName} M.D.</h4> 
