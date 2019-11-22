@@ -6,7 +6,17 @@ import './styles.css';
 
 $(document).ready(function () {
   $('#conditionSearchButton').click(function () {
-    alert("Clicked condition!");
+    let conditionSearchInput = $('#conditionSearch').val();
+
+    (async () => {
+      let condition = new DoctorSearch();
+      const response = await condition.conditionSearch(conditionSearchInput);
+      getElements(response);
+    })();
+
+    function getElements(response) {
+      console.log(response);
+    }
   })
   $('#searchbar').submit(function (event) {
     event.preventDefault();
@@ -19,7 +29,7 @@ $(document).ready(function () {
     })();
 
     function getElements(response) {
-      console.log('response', response);
+      console.log('doctorSearchByName response', response);
       $('#doctorInformation').html(`
       <div id='doctorResult'>
         <h4> ${response.firstName} ${response.lastName} M.D.</h4> 

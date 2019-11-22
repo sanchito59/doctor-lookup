@@ -6,6 +6,9 @@ export class DoctorSearch {
       if (response.ok) {
         const jsonResponse = await response.json();
         // console.log(jsonResponse.data[0]);
+        for (let i = 0; i < 2; i++) {
+          console.log('loop log: ', jsonResponse.data[0]);
+        }
         doctor.firstName = jsonResponse.data[0].profile.first_name;
         doctor.lastName = jsonResponse.data[0].profile.last_name;
         doctor.fullName = jsonResponse.data[0].practices[0].name;
