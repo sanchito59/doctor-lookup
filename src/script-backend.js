@@ -4,11 +4,10 @@ export class DoctorSearch {
     }
 
     async conditionSearch(condition) {
-        console.log(condition);
         let conditionResult;
         try {
-            const response = await fetch(`https://api.betterdoctor.com/2016-03-01/conditions?user_key=${process.env.GIPHY_KEY}`);
-            if (response.ok) {
+            const response = await fetch(`https://api.betterdoctor.com/2016-03-01/${condition}?user_key=${process.env.API_KEY}`);
+            if (!response.ok) {
                 const jsonResponse = await response.json();
                 conditionResult = jsonResponse;
                 console.log(conditionResult);

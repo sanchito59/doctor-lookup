@@ -10,6 +10,6 @@ $(document).ready(function () {
         let searchInput = $('#searchInput').val();
         search = new DoctorSearch(searchInput);
         console.log(search);
-        search.conditionSearch(search);
+        console.log(search.conditionSearch(searchInput));
     });
 });
