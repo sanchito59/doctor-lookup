@@ -5,10 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 $(document).ready(function () {
+  $('#conditionSearchButton').click(function () {
+    alert("Clicked condition!");
+  })
   $('#searchbar').submit(function (event) {
     event.preventDefault();
     let doctorSearchInput = $('#doctorSearch').val();
-    let conditionSearchInput = $('#conditionSearch').val();
 
     (async () => {
       let doctor = new DoctorSearch();
@@ -18,7 +20,6 @@ $(document).ready(function () {
 
     function getElements(response) {
       console.log('response', response);
-      // console.log('response2', response2);
       $('#doctorInformation').html(`
       <div id='doctorResult'>
         <h4> ${response.firstName} ${response.lastName} M.D.</h4> 
