@@ -6,10 +6,12 @@ import './styles.css';
 
 $(document).ready(function () {
     $('#searchInput').on('change', function () {
+        // event.preventDefault();
         let search;
         let searchInput = $('#searchInput').val();
-        search = new DoctorSearch(searchInput);
+        search = new DoctorSearch();
         console.log(search);
         console.log(search.conditionSearch(searchInput));
+        console.log(search.doctorSearch(searchInput));
     });
 });
