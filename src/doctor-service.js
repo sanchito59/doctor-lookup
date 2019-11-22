@@ -1,11 +1,16 @@
+// import { DisplayService } from './display-service.js';
+
 export class DoctorSearch {
+  constructor(newDoctor){
+    this.newDoctor = newDoctor;
+  }
   async doctorSearchByName(name) {
     let doctor = {};
     try {
       const response = await fetch(`https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=or-portland&sort=full-name-asc&skip=0&limit=10&user_key=${process.env.API_KEY}`);
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse.data[0]);
+        // console.log(jsonResponse.data[0]);
         doctor.firstName = jsonResponse.data[0].profile.first_name;
         doctor.lastName = jsonResponse.data[0].profile.last_name;
         doctor.fullName = jsonResponse.data[0].practices[0].name;
@@ -18,9 +23,8 @@ export class DoctorSearch {
         doctor.phoneNumber = jsonResponse.data[0].practices[0].phones[0].number;
         // doctor.website = jsonResponse.data[0].practices[4].website; //Most dont seem to have websites?
         doctor.newPatients = jsonResponse.data[0].practices[0].accepts_new_patients;
-        console.log('Doctor Info: ', doctor);
+        // console.log('Doctor Info: ', doctor);
       } else {
-        // conditionResult = futureErrorVariable;
         throw new Error(response.status);
       }
     } catch (error) {
@@ -28,4 +32,20 @@ export class DoctorSearch {
     }
     return doctor;
   }
+
+  // async conditionSearch() {
+  //   let ailment;
+  //   try {
+  //     const response = await fetch(`https://api.betterdoctor.com/2016-03-01/conditions?user_key=${process.env.API_KEY}`);
+  //     if (response.ok) {
+  //       const jsonResponse = await response.json();
+  //       // console.log(jsonResponse);
+  //     } else {
+  //       throw new Error(response.status);
+  //     }
+  //   } catch (error) {
+  //     console.error(`Better Doctor Fetch error: ${error}`);
+  //   }
+  //   return ailment;
+  // }
 }

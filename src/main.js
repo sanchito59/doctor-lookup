@@ -8,9 +8,9 @@ $(document).ready(function () {
   $('#doctorSearch').submit(function (event) {
     event.preventDefault();
     let searchInput = $('#searchInput').val();
-    let search = new DoctorSearch();
-    search.doctorSearchByName(searchInput);
-    console.log('Doctor: ', search);
-    console.log(search.conditionSearch(searchInput));
+    let doctor = new DoctorSearch();
+    doctor.doctorSearchByName(searchInput);
+    console.log('Doctor: ', doctor);
+    console.log(doctor.conditionSearch(searchInput));
   });
 });
