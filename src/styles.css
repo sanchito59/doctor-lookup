@@ -1,4 +1,12 @@
 body {
-  background-color: #7FDBFF;
+  background-color: rgb(197, 207, 211);
   margin: 25px;
+}
+
+#doctorSearch {
+  width: 80%;
+  height: 10em;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: blanchedalmond;
 }
