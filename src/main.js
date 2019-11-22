@@ -17,6 +17,7 @@ $(document).ready(function () {
 
     function getElements(response) {
       console.log(response);
+      $('#doctorInformation').text(`${response.firstName} ${response.lastName} ${response.city}, ${response.state} ${response.street} ${response.street2} ${response.zipCode} ${response.phoneNumber}`);
     }
 
   });
