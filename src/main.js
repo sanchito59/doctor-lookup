@@ -10,8 +10,8 @@ $(document).ready(function () {
         let search;
         let searchInput = $('#searchInput').val();
         search = new DoctorSearch();
-        console.log(search);
-        console.log(search.doctorSearchByName(searchInput));
+        search.doctorSearchByName(searchInput);
+        console.log('Doctor: ', doctor);
         console.log(search.conditionSearch(searchInput));
     });
 });
