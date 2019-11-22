@@ -9,4 +9,28 @@ body {
   padding: 15px;
   border-radius: 5px;
   background-color: blanchedalmond;
+  margin: 0 auto;
+}
+
+#doctorInformation {
+  width: 80%;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: rgba(255, 235, 205, 0.9);
+  margin: 25px auto;
+}
+
+#doctorResult {
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: rgb(245, 226, 197);
+}
+
+ul {
+  padding-left: 3px;
+}
+
+.address {
+  list-style: none;
+  margin-left: 0px;
 }

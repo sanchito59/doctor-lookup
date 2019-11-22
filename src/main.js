@@ -16,9 +16,18 @@ $(document).ready(function () {
     })();
 
     function getElements(response) {
-      console.log(response);
-      $('#doctorInformation').text(`${response.firstName} ${response.lastName} ${response.city}, ${response.state} ${response.street} ${response.street2} ${response.zipCode} ${response.phoneNumber}`);
+      console.log('ruff', response);
+      $('#doctorInformation').html(`
+      <div id='doctorResult'>
+        <h4> ${response.firstName} ${response.lastName} M.D.</h4> 
+        <h5>${response.city}, ${response.state}</h5> 
+        <ul>
+          <li class='address'>${response.street}</li>
+          <li class='address'>${response.street2}</li>
+          <li class='address'>${response.zipCode}</li>
+        </ul>
+        <p>☎️: ${response.phoneNumber}
+      </div>`);
     }
-
   });
 });
