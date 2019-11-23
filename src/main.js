@@ -1,5 +1,6 @@
 import $ from 'jquery';
-import { DoctorSearch } from './doctor-service.js';
+import { DoctorSearch } from './doctor-search-service.js';
+import { Doctor } from './doctor-search-service.js';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
@@ -32,8 +33,12 @@ $(document).ready(function () {
     })();
 
     function getElements(response) {
-      console.log('doctorSearchByName response', response);
-      response.data.forEach(function(){
+      $('#doctorInformation').text('');
+      let doctorsArr = [];
+      // console.log(Doctors);
+      response.data.forEach(() => {
+        console.log('doctorSearchByName response: ', response.data[0].profile.first_name);
+        // console.log(response.firstName);
         $('#doctorInformation').append(`
         <div id='doctorResult'>
           <h4> ${response.firstName} ${response.lastName} M.D.</h4> 
