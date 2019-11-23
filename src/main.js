@@ -51,6 +51,16 @@ $(document).ready(function () {
           <p>☎️: ${response.data[i].practices[0].phones[0].number}</p>
           <hr>
         </div>`);
+        // console.log('website: ', response.data[i].practices[0].website);
+        let websiteFinder = function () {
+          if (response.data[i].practices[0].website === undefined) {
+            return "No website.";
+          } else {
+            console.log(response.data[i].practices[0].website);
+            return response.data[i].practices[0].website;
+          }
+        };
+        websiteFinder();
         $('#secondStreet').attr('id', i); // replaces the ID of each dynamic object with a number value to use later
         if (response.data[i].practices[0].visit_address.street2 === undefined) {
           let el = $('#' + i);
@@ -59,7 +69,6 @@ $(document).ready(function () {
         let newID = 'middleName' + i;
         $('#missingMiddleName').attr('id', newID); // replaces the ID of each span object with new, concatenated ID
         if (response.data[i].profile.middle_name === undefined) {
-          console.log(newID);
           let el = $('#' + newID);
           el.html('');
         }
