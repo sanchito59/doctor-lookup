@@ -35,6 +35,10 @@ ul {
   margin-left: 0px;
 }
 
+.website {
+  font-size: 12px;
+}
+
 .small-italics {
   font-size: 10px;
   font-style: italic;

@@ -15,8 +15,11 @@ $(document).ready(function () {
       getElements(response);
     })();
 
-    function getElements(response) {
+    function getElements(response) { // currently working here
       console.log(response);
+      $('#doctorInformation').text('');
+      let doctorsArr = Object.keys(response.data);
+      console.log(doctorsArr);
     }
   });
 
@@ -48,28 +51,34 @@ $(document).ready(function () {
             <li class='address'>${response.data[i].practices[0].visit_address.zip}</li>
           </ul>
           <p class='small-italics'>It is ${response.data[i].practices[0].accepts_new_patients} that we are accepting new patients!</p>
+          <p class='website' id='missingWebsite'></p>
           <p>☎️: ${response.data[i].practices[0].phones[0].number}</p>
           <hr>
         </div>`);
         // console.log('website: ', response.data[i].practices[0].website);
+        let newWebsiteID = 'website' + i;
+        $('#missingWebsite').attr('id', newWebsiteID);
         let websiteFinder = function () {
           if (response.data[i].practices[0].website === undefined) {
-            return "No website.";
+            let el = $('#' + newWebsiteID);
+            el.html('');
           } else {
             console.log(response.data[i].practices[0].website);
-            return response.data[i].practices[0].website;
+            let el = $('#' + newWebsiteID);
+            el.html(response.data[i].practices[0].website);
           }
         };
         websiteFinder();
-        $('#secondStreet').attr('id', i); // replaces the ID of each dynamic object with a number value to use later
+        $('#secondStreet').attr('id', i); // replaces the ID of each dynamic address2 value with a different ID to use later
         if (response.data[i].practices[0].visit_address.street2 === undefined) {
           let el = $('#' + i);
           el.html('');
         }
-        let newID = 'middleName' + i;
-        $('#missingMiddleName').attr('id', newID); // replaces the ID of each span object with new, concatenated ID
+
+        let newMiddleNameID = 'middleName' + i;
+        $('#missingMiddleName').attr('id', newMiddleNameID); // replaces the ID of each span object with new, concatenated ID
         if (response.data[i].profile.middle_name === undefined) {
-          let el = $('#' + newID);
+          let el = $('#' + newMiddleNameID);
           el.html('');
         }
       }
