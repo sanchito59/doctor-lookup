@@ -13,11 +13,27 @@ $(document).ready(function () {
     }
   }
   function errorWithAPI(response) {
-    if(typeof(response) == 'string'){
+    if (typeof (response) == 'string') {
       $('#doctorInformation').hide();
       $('#errorWithAPI').slideDown();
       setTimeout(() => $('#errorWithAPI').slideUp(), 3500);
     }
+  }
+  function displayInfo(response, i) {
+    $('#doctorInformation').append(`
+      <div id='doctorResult'>
+        <h4> ${response.data[i].profile.first_name} <span class='middleName' id='missingMiddleName'>${response.data[i].profile.middle_name}</span> ${response.data[i].profile.last_name} M.D.</h4> 
+        <h5>${response.data[i].practices[0].visit_address.city}, ${response.data[i].practices[0].visit_address.state}</h5> 
+        <ul>
+          <li class='address'>${response.data[i].practices[0].visit_address.street}</li>
+          <li class='address address2' id='secondStreet'>${response.data[i].practices[0].visit_address.street2}</li>
+          <li class='address'>${response.data[i].practices[0].visit_address.zip}</li>
+        </ul>
+        <p class='small-italics'>It is ${response.data[i].practices[0].accepts_new_patients} that we are accepting new patients!</p>
+        <p class='website' id='missingWebsite'></p>
+        <p>☎️: ${response.data[i].practices[0].phones[0].number}</p>
+        <hr>
+      </div>`);
   }
   //Condition Search
   $('#conditionSearchButton').click(function () {
@@ -36,20 +52,7 @@ $(document).ready(function () {
       let doctorsArr = Object.keys(response.data);
       noSearchResult(doctorsArr);
       for (let i = 0; i < doctorsArr.length; i++) {
-        $('#doctorInformation').append(`
-        <div id='doctorResult'>
-          <h4> ${response.data[i].profile.first_name} <span class='middleName' id='missingMiddleName'>${response.data[i].profile.middle_name}</span> ${response.data[i].profile.last_name} M.D.</h4> 
-          <h5>${response.data[i].practices[0].visit_address.city}, ${response.data[i].practices[0].visit_address.state}</h5> 
-          <ul>
-            <li class='address'>${response.data[i].practices[0].visit_address.street}</li>
-            <li class='address address2' id='secondStreet'>${response.data[i].practices[0].visit_address.street2}</li>
-            <li class='address'>${response.data[i].practices[0].visit_address.zip}</li>
-          </ul>
-          <p class='small-italics'>It is ${response.data[i].practices[0].accepts_new_patients} that we are accepting new patients!</p>
-          <p class='website' id='missingWebsite'></p>
-          <p>☎️: ${response.data[i].practices[0].phones[0].number}</p>
-          <hr>
-        </div>`);
+        displayInfo(response, i);
         let newWebsiteID = 'website' + i;
         $('#missingWebsite').attr('id', newWebsiteID);
         let websiteFinder = function () {
@@ -97,20 +100,7 @@ $(document).ready(function () {
       let doctorsArr = Object.keys(response.data);
       noSearchResult(doctorsArr);
       for (let i = 0; i < doctorsArr.length; i++) {
-        $('#doctorInformation').append(`
-        <div id='doctorResult'>
-          <h4> ${response.data[i].profile.first_name} <span class='middleName' id='missingMiddleName'>${response.data[i].profile.middle_name}</span> ${response.data[i].profile.last_name} M.D.</h4> 
-          <h5>${response.data[i].practices[0].visit_address.city}, ${response.data[i].practices[0].visit_address.state}</h5> 
-          <ul>
-            <li class='address'>${response.data[i].practices[0].visit_address.street}</li>
-            <li class='address address2' id='secondStreet'>${response.data[i].practices[0].visit_address.street2}</li>
-            <li class='address'>${response.data[i].practices[0].visit_address.zip}</li>
-          </ul>
-          <p class='small-italics'>It is ${response.data[i].practices[0].accepts_new_patients} that we are accepting new patients!</p>
-          <p class='website' id='missingWebsite'></p>
-          <p>☎️: ${response.data[i].practices[0].phones[0].number}</p>
-          <hr>
-        </div>`);
+        displayInfo(response, i);
         let newWebsiteID = 'website' + i;
         $('#missingWebsite').attr('id', newWebsiteID);
         let websiteFinder = function () {
