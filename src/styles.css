@@ -34,3 +34,8 @@ ul {
   list-style: none;
   margin-left: 0px;
 }
+
+.small-italics {
+  font-size: 10px;
+  font-style: italic;
+}

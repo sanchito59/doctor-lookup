@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { DoctorSearch } from './doctor-search-service.js';
-import { Doctor } from './doctor-search-service.js';
+// import { Doctor } from './doctor-search-service.js';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
@@ -37,23 +37,22 @@ $(document).ready(function () {
       $('#doctorInformation').text('');
       let doctorsArr = Object.keys(response.data);
       console.log(doctorsArr);
-      for(let i = 0; i < doctorsArr.length; i++){
+      for (let i = 0; i < doctorsArr.length; i++) {
         console.log('doctorSearchByName response: ', response.data[i].profile.first_name);
-      }
-      doctorsArr.forEach(() => {
-        console.log(response.firstName);
         $('#doctorInformation').append(`
         <div id='doctorResult'>
-          <h4> ${response.firstName} ${response.lastName} M.D.</h4> 
-          <h5>${response.city}, ${response.state}</h5> 
+          <h4> ${response.data[i].profile.first_name} ${response.data[i].profile.last_name} M.D.</h4> 
+          <h5>${response.data[0].practices[0].visit_address.city}, ${response.data[0].practices[0].visit_address.state}</h5> 
           <ul>
-            <li class='address'>${response.street}</li>
-            <li class='address'>${response.street2}</li>
-            <li class='address'>${response.zipCode}</li>
+            <li class='address'>${response.data[0].practices[0].visit_address.street}</li>
+            <li class='address'>${response.data[0].practices[0].visit_address.street2}</li>
+            <li class='address'>${response.data[0].practices[0].visit_address.zip}</li>
           </ul>
-          <p>☎️: ${response.phoneNumber}
+          <p class='small-italics'>It is ${response.data[0].practices[0].accepts_new_patients} that we are accepting new patients!</p>
+          <p>☎️: ${response.data[0].practices[0].phones[0].number}</p>
+          <hr>
         </div>`);
-      });
+      }
     }
   });
 });
