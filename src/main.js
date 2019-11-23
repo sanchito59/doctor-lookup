@@ -40,7 +40,7 @@ $(document).ready(function () {
         // console.log('doctorSearchByName response: ', response.data[i].profile.first_name);
         $('#doctorInformation').append(`
         <div id='doctorResult'>
-          <h4> ${response.data[i].profile.first_name} ${response.data[i].profile.middle_name} ${response.data[i].profile.last_name} M.D.</h4> 
+          <h4> ${response.data[i].profile.first_name} <span class='middleName' id='missingMiddleName'>${response.data[i].profile.middle_name}</span> ${response.data[i].profile.last_name} M.D.</h4> 
           <h5>${response.data[i].practices[0].visit_address.city}, ${response.data[i].practices[0].visit_address.state}</h5> 
           <ul>
             <li class='address'>${response.data[i].practices[0].visit_address.street}</li>
@@ -54,10 +54,14 @@ $(document).ready(function () {
         $('#secondStreet').attr('id', i); // replaces the ID of each dynamic object with a number value to use later
         if (response.data[i].practices[0].visit_address.street2 === undefined) {
           let el = $('#' + i);
-          console.log('id for non-existent:', el);
           el.html('');
-        } else {
-          console.log('id for existing:', i);
+        }
+        let newID = 'middleName' + i;
+        $('#missingMiddleName').attr('id', newID); // replaces the ID of each span object with new, concatenated ID
+        if (response.data[i].profile.middle_name === undefined) {
+          console.log(newID);
+          let el = $('#' + newID);
+          el.html('');
         }
       }
     }
