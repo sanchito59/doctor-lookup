@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import { DoctorSearch } from './doctor-search-service.js';
-// import { Doctor } from './doctor-search-service.js';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
@@ -52,12 +51,12 @@ $(document).ready(function () {
           <p>☎️: ${response.data[i].practices[0].phones[0].number}</p>
           <hr>
         </div>`);
-        $('#secondStreet').attr('id', i); // replaces the ID each dynamic object with a number value to use later
+        $('#secondStreet').attr('id', i); // replaces the ID of each dynamic object with a number value to use later
         if (response.data[i].practices[0].visit_address.street2 === undefined) {
           console.log(`oi that's another one`);
           // return 'N/A';
         } else {
-          console.log('address2 in exists');
+          console.log('address2 exists');
         }
       }
     }
