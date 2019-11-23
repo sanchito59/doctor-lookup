@@ -41,11 +41,11 @@ $(document).ready(function () {
         // console.log('doctorSearchByName response: ', response.data[i].profile.first_name);
         $('#doctorInformation').append(`
         <div id='doctorResult'>
-          <h4> ${response.data[i].profile.first_name} ${response.data[i].profile.last_name} M.D.</h4> 
+          <h4> ${response.data[i].profile.first_name} ${response.data[i].profile.middle_name} ${response.data[i].profile.last_name} M.D.</h4> 
           <h5>${response.data[i].practices[0].visit_address.city}, ${response.data[i].practices[0].visit_address.state}</h5> 
           <ul>
             <li class='address'>${response.data[i].practices[0].visit_address.street}</li>
-            <li class='address' id='secondStreet'>${response.data[i].practices[0].visit_address.street2}</li>
+            <li class='address address2' id='secondStreet'>${response.data[i].practices[0].visit_address.street2}</li>
             <li class='address'>${response.data[i].practices[0].visit_address.zip}</li>
           </ul>
           <p class='small-italics'>It is ${response.data[i].practices[0].accepts_new_patients} that we are accepting new patients!</p>
@@ -53,9 +53,11 @@ $(document).ready(function () {
           <hr>
         </div>`);
         $('#secondStreet').attr('id', i); // replaces the ID each dynamic object with a number value to use later
-        if(response.data[i].practices[0].visit_address.street2 === undefined){
-          // $('')
+        if (response.data[i].practices[0].visit_address.street2 === undefined) {
           console.log(`oi that's another one`);
+          // return 'N/A';
+        } else {
+          console.log('address2 in exists');
         }
       }
     }
