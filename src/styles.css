@@ -11,7 +11,7 @@ body {
   margin: 0 auto;
 }
 
-#noResultError {
+#noResultError, #errorWithAPI {
   margin-top: 10px;
   font-style: italic;
   color: crimson;

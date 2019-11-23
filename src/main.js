@@ -12,6 +12,13 @@ $(document).ready(function () {
       setTimeout(() => $('#noResultError').slideUp(), 3500);
     }
   }
+  function errorWithAPI(response) {
+    if(typeof(response) == 'string'){
+      $('#doctorInformation').hide();
+      $('#errorWithAPI').slideDown();
+      setTimeout(() => $('#errorWithAPI').slideUp(), 3500);
+    }
+  }
   //Condition Search
   $('#conditionSearchButton').click(function () {
     let conditionSearchInput = $('#conditionSearch').val();
@@ -22,8 +29,9 @@ $(document).ready(function () {
       getElements(response);
     })();
 
-    function getElements(response) { // currently working here
+    function getElements(response) {
       $('#doctorInformation').show();
+      errorWithAPI(response);
       $('#doctorInformation').text('');
       let doctorsArr = Object.keys(response.data);
       noSearchResult(doctorsArr);
@@ -78,11 +86,13 @@ $(document).ready(function () {
     (async () => {
       let doctor = new DoctorSearch();
       const response = await doctor.doctorSearchByName(doctorSearchInput);
+      errorWithAPI(response);
       getElements(response);
     })();
 
     function getElements(response) {
       $('#doctorInformation').show();
+      errorWithAPI(response);
       $('#doctorInformation').text('');
       let doctorsArr = Object.keys(response.data);
       noSearchResult(doctorsArr);
