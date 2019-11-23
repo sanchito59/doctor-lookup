@@ -5,6 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 $(document).ready(function () {
+  function newSearchCheck(response) {
+    $('#doctorInformation').show();
+    errorWithAPI(response);
+    $('#doctorInformation').text('');
+  }
   function noSearchResult(arr) {
     if (arr.length < 1) {
       $('#doctorInformation').hide();
@@ -20,6 +25,7 @@ $(document).ready(function () {
     }
   }
   function displayInfo(response, i) {
+    console.log(response);
     $('#doctorInformation').append(`
       <div id='doctorResult'>
         <h4> ${response.data[i].profile.first_name} <span class='middleName' id='missingMiddleName'>${response.data[i].profile.middle_name}</span> ${response.data[i].profile.last_name} M.D.</h4> 
@@ -35,6 +41,32 @@ $(document).ready(function () {
         <hr>
       </div>`);
   }
+  function addressRemover(response, i) {
+    $('#secondStreet').attr('id', i); // replaces the ID of each dynamic address2 value with a different ID to use later
+    if (response.data[i].practices[0].visit_address.street2 === undefined) {
+      let el = $('#' + i);
+      el.html('');
+    }
+  }
+  function middleNameCheck(response, i) {
+    let newMiddleNameID = 'middleName' + i;
+    $('#missingMiddleName').attr('id', newMiddleNameID); // replaces the ID of each span object with new, concatenated ID
+    if (response.data[i].profile.middle_name === undefined) {
+      let el = $('#' + newMiddleNameID);
+      el.html('');
+    }
+  }
+  let websiteFinder = function (response, i) {
+    let newWebsiteID = 'website' + i;
+    $('#missingWebsite').attr('id', newWebsiteID);
+    if (response.data[i].practices[0].website === undefined) {
+      let el = $('#' + newWebsiteID);
+      el.html('');
+    } else {
+      let el = $('#' + newWebsiteID);
+      el.html(response.data[i].practices[0].website);
+    }
+  };
   //Condition Search
   $('#conditionSearchButton').click(function () {
     let conditionSearchInput = $('#conditionSearch').val();
@@ -46,37 +78,14 @@ $(document).ready(function () {
     })();
 
     function getElements(response) {
-      $('#doctorInformation').show();
-      errorWithAPI(response);
-      $('#doctorInformation').text('');
+      newSearchCheck(response);
       let doctorsArr = Object.keys(response.data);
       noSearchResult(doctorsArr);
       for (let i = 0; i < doctorsArr.length; i++) {
         displayInfo(response, i);
-        let newWebsiteID = 'website' + i;
-        $('#missingWebsite').attr('id', newWebsiteID);
-        let websiteFinder = function () {
-          if (response.data[i].practices[0].website === undefined) {
-            let el = $('#' + newWebsiteID);
-            el.html('');
-          } else {
-            let el = $('#' + newWebsiteID);
-            el.html(response.data[i].practices[0].website);
-          }
-        };
-        websiteFinder();
-        $('#secondStreet').attr('id', i); // replaces the ID of each dynamic address2 value with a different ID to use later
-        if (response.data[i].practices[0].visit_address.street2 === undefined) {
-          let el = $('#' + i);
-          el.html('');
-        }
-
-        let newMiddleNameID = 'middleName' + i;
-        $('#missingMiddleName').attr('id', newMiddleNameID); // replaces the ID of each span object with new, concatenated ID
-        if (response.data[i].profile.middle_name === undefined) {
-          let el = $('#' + newMiddleNameID);
-          el.html('');
-        }
+        websiteFinder(response, i);
+        addressRemover(response, i);
+        middleNameCheck(response, i);
       }
     }
   });
@@ -94,37 +103,14 @@ $(document).ready(function () {
     })();
 
     function getElements(response) {
-      $('#doctorInformation').show();
-      errorWithAPI(response);
-      $('#doctorInformation').text('');
+      newSearchCheck(response);
       let doctorsArr = Object.keys(response.data);
       noSearchResult(doctorsArr);
       for (let i = 0; i < doctorsArr.length; i++) {
         displayInfo(response, i);
-        let newWebsiteID = 'website' + i;
-        $('#missingWebsite').attr('id', newWebsiteID);
-        let websiteFinder = function () {
-          if (response.data[i].practices[0].website === undefined) {
-            let el = $('#' + newWebsiteID);
-            el.html('');
-          } else {
-            let el = $('#' + newWebsiteID);
-            el.html(response.data[i].practices[0].website);
-          }
-        };
-        websiteFinder();
-        $('#secondStreet').attr('id', i); // replaces the ID of each dynamic address2 value with a different ID to use later
-        if (response.data[i].practices[0].visit_address.street2 === undefined) {
-          let el = $('#' + i);
-          el.html('');
-        }
-
-        let newMiddleNameID = 'middleName' + i;
-        $('#missingMiddleName').attr('id', newMiddleNameID); // replaces the ID of each span object with new, concatenated ID
-        if (response.data[i].profile.middle_name === undefined) {
-          let el = $('#' + newMiddleNameID);
-          el.html('');
-        }
+        websiteFinder(response, i);
+        addressRemover(response, i);
+        middleNameCheck(response, i);
       }
     }
   });
