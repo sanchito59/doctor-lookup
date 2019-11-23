@@ -33,12 +33,15 @@ $(document).ready(function () {
     })();
 
     function getElements(response) {
+      console.log(response);
       $('#doctorInformation').text('');
-      let doctorsArr = [];
-      // console.log(Doctors);
-      response.data.forEach(() => {
-        console.log('doctorSearchByName response: ', response.data[0].profile.first_name);
-        // console.log(response.firstName);
+      let doctorsArr = Object.keys(response.data);
+      console.log(doctorsArr);
+      for(let i = 0; i < doctorsArr.length; i++){
+        console.log('doctorSearchByName response: ', response.data[i].profile.first_name);
+      }
+      doctorsArr.forEach(() => {
+        console.log(response.firstName);
         $('#doctorInformation').append(`
         <div id='doctorResult'>
           <h4> ${response.firstName} ${response.lastName} M.D.</h4> 
