@@ -53,10 +53,11 @@ $(document).ready(function () {
         </div>`);
         $('#secondStreet').attr('id', i); // replaces the ID of each dynamic object with a number value to use later
         if (response.data[i].practices[0].visit_address.street2 === undefined) {
-          console.log(`oi that's another one`);
-          // return 'N/A';
+          let el = $('#' + i);
+          console.log('id for non-existent:', el);
+          el.html('');
         } else {
-          console.log('address2 exists');
+          console.log('id for existing:', i);
         }
       }
     }

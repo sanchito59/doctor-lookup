@@ -15,6 +15,5 @@
     "no-console": "off",
     "no-debugger": "warn",
     "no-undef": "warn",
-    "no-unused-vars": "warn"
-  }
+    "no-unused-vars": "warn"  }
 }

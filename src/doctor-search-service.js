@@ -32,20 +32,3 @@ export class DoctorSearch {
     return ailment;
   }
 }
-
-// console.log('raw json: ', jsonResponse);
-// let keys = Object.keys(jsonResponse.data);
-// console.log('keys: ', keys);
-// doctor.firstName = jsonResponse.data[0].profile.first_name;
-// doctor.lastName = jsonResponse.data[0].profile.last_name;
-// doctor.fullName = jsonResponse.data[0].practices[0].name;
-// doctor.city = jsonResponse.data[0].practices[0].visit_address.city;
-// doctor.state = jsonResponse.data[0].practices[0].visit_address.state;
-// doctor.street = jsonResponse.data[0].practices[0].visit_address.street;
-// doctor.street2 = jsonResponse.data[0].practices[0].visit_address.street2;
-// doctor.zipCode = jsonResponse.data[0].practices[0].visit_address.zip;
-// doctor.address = `${doctor.city}, ${doctor.state}; ${doctor.street}. ${doctor.street2}, ${doctor.zipCode} `;
-// doctor.phoneNumber = jsonResponse.data[0].practices[0].phones[0].number;
-// // doctor.website = jsonResponse.data[0].practices[4].website; //Most dont seem to have websites?
-// doctor.newPatients = jsonResponse.data[0].practices[0].accepts_new_patients;
-// // console.log('Doctor Info: ', doctor);
